@@ -13,6 +13,7 @@ class Node:
         for i in other.tags:
             self.tags.add(i)
         self.photos = (self.photos, other.photos)
+        other.photos = self.photos
         return self
 
 f = open("a_example.txt", "r")
@@ -33,22 +34,19 @@ for i in range(a):
 
 def pairer(data):
     result = []
-    used_nodes = []
     for node1 in data:
         tags_1 = node1.tags
         union_size = 0
         max_node = None
-        if node1 not in used_nodes:
+        if type(node1.photos) is int:
             for node2 in data:
-                if node2 not in used_nodes:
+                if type(node2.photos) is int:
                     tags_2 = node2.tags
                     union = tags_1.union(tags_2)
                     size = len(union)
                     if size > union_size:
                         union_size = size
                         max_node = node2
-            used_nodes.append(node1)
-            used_nodes.append(node2)
             result.append(node1.combine(node2))
     return result
 
