@@ -16,7 +16,7 @@ class Node:
         other.photos = self.photos
         return self
 
-f = open("a_example.txt", "r")
+f = open("c_memorable_moments.txt", "r")
 w = open("output.txt", "w+")
 contents = f.readlines()
 a = int(contents[0])
@@ -47,7 +47,8 @@ def pairer(data):
                     if size > union_size:
                         union_size = size
                         max_node = node2
-            result.append(node1.combine(node2))
+            result.append(node1.combine(max_node))
+
     return result
 
 #for i in range(0, len(vertical), 2):
@@ -82,8 +83,6 @@ def computeMaximum(n):
         if(temp > val):
             val = temp
             ans = nV
-        if val >= 3:
-            break;
         i = i + 1
     #print(val)
     notVisited.remove(nV)
